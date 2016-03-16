@@ -1,4 +1,6 @@
-// Determine if a string has all unique characters
+/**
+* Determine if a string has all unique characters
+*/
 
 public static boolean isUnique(Stirng s) {
     if (s == null || s.length() == 0) {
