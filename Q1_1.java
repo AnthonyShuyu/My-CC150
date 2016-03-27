@@ -44,6 +44,8 @@ public static boolean isUnique(String s) {
 * Follow up: what if you can not use additional data structure?
 */
 
+// Use 2 level for loop,  T = O(n^2), S = O(1)
+
 public static boolean isUnique(String s) {
     if (s == null || s.length() == 0) {
         return true;
@@ -58,5 +60,3 @@ public static boolean isUnique(String s) {
     }
     return true;
 }
-
-// Use 2 level for loop,  T = O(n^2), S = O(1)
