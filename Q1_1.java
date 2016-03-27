@@ -19,7 +19,7 @@ public static boolean isUnique(Stirng s) {
     return true;
 }
 
-//
+// Use boolean array, T = O(n), S = O(n)
 
 public static boolean isUnique(String s) {
     if (s == null || s.length() == 0) {
@@ -37,15 +37,6 @@ public static boolean isUnique(String s) {
     }
     return true;
 }
-
-
-
-
-
-
-
-
-
 
 
 
