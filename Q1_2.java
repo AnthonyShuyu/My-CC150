@@ -10,7 +10,7 @@ public String reverseString(String s) {
     return sb.toString();
 }
 
-// use StringBuilder append() method
+// use StringBuilder append() method, T = O(n), n is the length of s
 
 public String reverseString(String s) {
     StringBuilder sb = new StringBuilder();
