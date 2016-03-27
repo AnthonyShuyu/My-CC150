@@ -2,6 +2,8 @@
 * Determine if a string has all unique characters
 */
 
+// Use HashSet, T = O(n), S = O(n), n is the length of s.
+
 public static boolean isUnique(Stirng s) {
     if (s == null || s.length() == 0) {
       return true;
@@ -16,3 +18,54 @@ public static boolean isUnique(Stirng s) {
     }
     return true;
 }
+
+//
+
+public static boolean isUnique(String s) {
+    if (s == null || s.length() == 0) {
+        return true;
+    }
+    int n = s.length();
+    boolean[] uniqueChars = new boolean[256];
+    for (int i = 0; i < n; i++) {
+        int index = s.charAt(i);
+        if (uniqueChars[index]) {
+            return false;
+        } else {
+            uniqueChars[index] = true;
+        }
+    }
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+* Follow up: what if you can not use additional data structure?
+*/
+
+public static boolean isUnique(String s) {
+    if (s == null || s.length() == 0) {
+        return true;
+    }
+    int n = s.length();
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (s.charAt(i) == s.charAt(j)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+// Use 2 level for loop,  T = O(n^2), S = O(1)
