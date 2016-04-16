@@ -29,7 +29,7 @@ public static boolean isUnique(String s) {
     int n = s.length();
     boolean[] uniqueChars = new boolean[256];
     for (int i = 0; i < n; i++) {
-        int index = s.charAt(i);
+        int index = s.charAt(i);    //char to int, ASCII
         if (uniqueChars[index]) {
             return false;
         } else {
