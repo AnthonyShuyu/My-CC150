@@ -26,10 +26,12 @@ public static boolean isUnique(String s) {
     if (s == null || s.length() == 0) {
         return true;
     }
-    int n = s.length();
+    if (s.length() > 256) {
+        return false;
+    }
     boolean[] uniqueChars = new boolean[256];
-    for (int i = 0; i < n; i++) {
-        int index = s.charAt(i);    //char to int, ASCII
+    for (int i = 0; i < s.length(); i++) {
+        int index = s.charAt(i);
         if (uniqueChars[index]) {
             return false;
         } else {
@@ -39,6 +41,26 @@ public static boolean isUnique(String s) {
     return true;
 }
 
+
+// Use bitwise operation, T = O(n), S = O(1)
+public static boolean isUnique(String s) {
+    if (s == null || s.length() == 0) {
+        return true;
+    }
+    if (s.length() > 0) {
+        return false;
+    }
+    int checker = 0;
+    for (int i = 0; i < s.length(); i++) {
+        int val = s.charAt(i) - 'a';
+        if ((checker & (1 << val)) > 0) {
+            return false;
+        } else {
+            checker = checker | (1 << val);  
+        }
+        return true;
+    }
+}
 
 
 /**
