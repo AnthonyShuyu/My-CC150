@@ -1,54 +1,84 @@
 /**
-* Determine if a string has all unique characters
-*
+* 1. Ask questions, figure out what exactly the question is
+* 2. Make a lot of assumes
+* 3. Time and Space Complexity
+* 4. Describe my thoughts (in English)
+* 5. Brute force first, then optimize
 */
 
-// Use HashSet, T = O(n), S = O(n), n is the length of s.
+/**
+* Determine if a string has all unique characters
+* 5 methods
+*/
 
-public static boolean isUnique(Stirng s) {
-    if (s == null || s.length() == 0) {
-      return true;
-    }
-    int n = s.length();
-    Set<Character> hashSet = new HashSet<Character>();
-    for (int i = 0; i < n; i++) {
-        if (hashSet.contains(s.charAt(i))) {
-            return false;
-        }
-        hashSet.add(s.charAt(i));
-    }
-    return true;
-}
-
-// Use boolean array, T = O(n), S = O(n)
+// s1: brute force
+// O(n^2), O(1)
 
 public static boolean isUnique(String s) {
     if (s == null || s.length() == 0) {
         return true;
     }
-    if (s.length() > 256) {
-        return false;
-    }
-    boolean[] uniqueChars = new boolean[256];
     for (int i = 0; i < s.length(); i++) {
-        int index = s.charAt(i);
-        if (uniqueChars[index]) {
+        for (int j = i + 1; j < s.length(); j++) {
+            if (s.charAt(i) == s.charAt(j)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+// s2: HashSet
+// O(n), O(n)
+
+public static boolean isUnique(String s) {
+    if (s == null || s.length() == 0) {
+        return true;
+    }
+    Set<Character> hashSet = new HashSet<Character>();
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (hashSet.contains(c)) {
             return false;
         } else {
-            uniqueChars[index] = true;
+            hashSet.add(c);
         }
     }
     return true;
 }
 
 
-// Use bitwise operation, T = O(n), S = O(1)
+// s3: boolean array
+// O(n), O(n)
+
 public static boolean isUnique(String s) {
     if (s == null || s.length() == 0) {
         return true;
     }
-    if (s.length() > 0) {
-        return false;
+
+    boolean[] bArray = new boolean[256];
+    for (int i = 0; i < s.length(); i++) {
+        int index = s.charAt(i);
+        if (bArray[index]) {
+            return false;
+        } else {
+            bArray[index] = true;
+        }
+    }
+    return true;
+}
+
+// char to int do not need add (int)c
+// the String is Ascii String or UniCode String?
+// should judge if the s.length() > 256, if it is, return false
+
+// s4: bitwise
+// O(n), O(1)
+// !!!
+
+public static boolean isUnique(String s) {
+    if (s == null || s.length() == 0) {
+        return true;
     }
     int checker = 0;
     for (int i = 0; i < s.length(); i++) {
@@ -56,29 +86,27 @@ public static boolean isUnique(String s) {
         if ((checker & (1 << val)) > 0) {
             return false;
         } else {
-            checker = checker | (1 << val);  
+            checker = checker | (1 << val);
         }
-        return true;
     }
+    return true;
 }
+// bitwise operation, arithmatic left shift << and right shift >>, logic right shift >>>
+// Assume that the String only contains lower case letters a to z;
 
 
-/**
-* Follow up: what if you can not use additional data structure?
-*/
-
-// Use 2 level for loop,  T = O(n^2), S = O(1)
-
+// s5: String to Char Array, and order the array, compare the neighboring characters
+// O(nlogn), O(n)
 public static boolean isUnique(String s) {
     if (s == null || s.length() == 0) {
         return true;
     }
-    int n = s.length();
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (s.charAt(i) == s.charAt(j)) {
-                return false;
-            }
+    char[] charArray = s.toCharArray();
+    Arrays.sort(charArray);
+
+    for (int i = 0; i < charArray.length - 1; i++) {
+        if (charArray[i] == charArray[i + 1]) {
+            return false;
         }
     }
     return true;
