@@ -1,9 +1,48 @@
 /**
 * check if s2 is a rotation of s1 using only one call to isSubstring
-*
+* 2 methods
 */
 
-// call isSubstring many times
+// s1: use the isSubString method
+// O(n), O(n)
+
+public static boolean isRotation(String s1, String s2) {
+    if (s1 == null || s2 == null) {
+        return false;
+    }
+    if (s1.length() == 0 && s2.length() == 0) {
+        return true;
+    }
+
+    if (s1.length() != s2.length()) {
+        return false;
+    }
+
+    StringBuilder sb = new StringBuilder(s1);
+    sb.append(s1);
+    String newString = sb.toString();
+    return isSubString(newString, s2);
+}
+
+public static boolean isSubString(String s1, String s2) {
+    if (s1 == null || s2 == null) {
+        return false;
+    }
+    if (s2.length() > s1.length()) {
+        return false;
+    }
+    for (int i = 0; i < s1.length() - s2.length() + 1; i++) {
+        if (s1.substring(i, i + s2.length()).equals(s2)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+// s2: call isSubstring many times
+// O(n^2), O(n)
 
 public static boolean isSubstring(String s1, String s2) {
     if (s1 == null || s2 == null) {

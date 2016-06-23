@@ -1,12 +1,4 @@
 /**
-* 1. Ask questions, figure out what exactly the question is
-* 2. Make a lot of assumes
-* 3. Time and Space Complexity
-* 4. Describe my thoughts (in English)
-* 5. Brute force first, then optimize
-*/
-
-/**
 * Determine if a string has all unique characters
 * 5 methods
 */

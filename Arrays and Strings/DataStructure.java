@@ -1,4 +1,3 @@
-// 6/7/2016
 // HashTable
 
 public static Map<Integer, Integer> buildMap(int[] array) {
